@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--加载数据库属性文件-->
+<properties resource="db.properties"></properties>
+
+<environments default="development">
+    <environment id="development">
+        <!--事务配置，JDBC要手动提交事务，MANAGED由容器管理，不需要手动提交-->
+        <transactionManager type="MANAGED" />
+        <dataSource type="POOLED">
+            <property name="driver" value="${jdbc.driver}" />
+            <property name="url" value="${jdbc.url}" />
+            <property name="username" value="${jdbc.username}" />
+            <property name="password" value="${jdbc.password}" />
+        </dataSource>
+    </environment>
+</environments>
+
+    <!--这是告诉Mybatis区哪找持久化类的映射文件，对于在src下的文件直接写文件名，
+           如果在某包下，则要写明路径-->
+   <mappers>
+       <mapper resource="com/test/mapper/UserMapper.xml"></mapper>
+   </mappers>
+</configuration>
